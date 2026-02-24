@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
 """
-VendorSync Pro - Procurement Intelligence & Price Comparison System
-====================================================================
+VendorSync - Vendor Price Comparison Automation
+===============================================
 
-A production-grade tool that automates vendor price comparison by:
-1. Reading multiple vendor Excel files and CSV files from Google Drive
-2. Cleaning and normalizing product identifiers (UPC/EAN)
-3. Merging data with outer joins to create a unified price matrix
-4. Publishing results to Google Sheets with conditional formatting
+Automatically downloads vendor price files from Google Drive,
+normalizes barcodes (UPC/EAN), merges into a unified price matrix,
+and publishes the result to Google Sheets with lowest-price highlighting.
 
-Business Value:
-- Reduces manual price comparison from hours to seconds
-- Eliminates human error in identifying best vendor prices
-- Provides real-time procurement intelligence dashboard
-- Scales effortlessly as new vendors are added
+Entry point: python main.py
+Config:      config.json
+Credentials: google_credentials.json
 
 License: MIT
 """
@@ -21,6 +17,7 @@ License: MIT
 import json
 import logging
 import sys
+import time
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -36,19 +33,17 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('vendorsync_pro.log'),
+        logging.FileHandler('vendorsync.log'),
         logging.StreamHandler(sys.stdout)
     ]
 )
 logger = logging.getLogger(__name__)
 
 
-class VendorSyncPro:
+class VendorSync:
     """
-    Main orchestrator class for VendorSync Pro system.
-
-    Handles the complete pipeline from vendor file ingestion to
-    Google Sheets publication with conditional formatting.
+    Orchestrates the full vendor price comparison pipeline:
+    download → clean → merge → publish.
     """
 
     def __init__(self, config_path: str, credentials_path: str):
@@ -64,7 +59,7 @@ class VendorSyncPro:
         self.drive_service = build('drive', 'v3', credentials=self.credentials)
         self.sheets_client = gspread.authorize(self.credentials)
 
-        logger.info("VendorSync Pro initialized successfully")
+        logger.info("VendorSync initialized")
 
     def _load_config(self, config_path: str) -> Dict:
         """Load and validate vendor configuration from JSON file."""
@@ -664,7 +659,7 @@ class VendorSyncPro:
         4. Publish to Google Sheets with formatting
         """
         logger.info("=" * 60)
-        logger.info("VendorSync Pro Pipeline Starting")
+        logger.info("VendorSync Pipeline Starting")
         logger.info("=" * 60)
 
         try:
@@ -685,7 +680,7 @@ class VendorSyncPro:
             self.publish_to_sheets(merged_df)
 
             logger.info("=" * 60)
-            logger.info("VendorSync Pro Pipeline Complete!")
+            logger.info("VendorSync Pipeline Complete!")
             logger.info(f"Processed {len(merged_df)} unique products")
             logger.info("=" * 60)
 
@@ -713,14 +708,17 @@ def preflight_check():
 
 
 def main():
-    """Main entry point for VendorSync Pro."""
+    """Entry point. Runs preflight check then executes the pipeline."""
     preflight_check()
 
+    start = time.time()
     try:
-        vendorsync = VendorSyncPro('config.json', 'google_credentials.json')
+        vendorsync = VendorSync('config.json', 'google_credentials.json')
         vendorsync.run_pipeline()
+        elapsed = time.time() - start
+        print(f"\n🚀 Done in {elapsed:.1f} seconds")
     except Exception as e:
-        logger.error(f"VendorSync Pro failed: {e}")
+        logger.error(f"VendorSync failed: {e}")
         sys.exit(1)
 
 

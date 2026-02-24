@@ -1,0 +1,22 @@
+{
+  "drive_folder_id": "YOUR_GOOGLE_DRIVE_FOLDER_ID",
+  "output_sheet_id": "YOUR_GOOGLE_SHEET_ID",
+  "vendors": [
+    {
+      "name": "VendorA",
+      "upc_column": "UPC",
+      "ean_column": "EAN",
+      "product_name_column": "PRODUCT_NAME",
+      "price_column": "PRICE",
+      "qty_column": "QTY"
+    },
+    {
+      "name": "VendorB",
+      "upc_column": "product_upc",
+      "ean_column": "ean13",
+      "product_name_column": "product_name",
+      "price_column": "wholesale_price",
+      "qty_column": "stock_qty"
+    }
+  ]
+}
