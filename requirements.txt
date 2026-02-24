@@ -1,0 +1,17 @@
+# VendorSync Pro - Python Dependencies
+# =======================================
+
+# Data Processing
+pandas>=2.0.0              # Core data manipulation and merging
+openpyxl>=3.1.0            # Excel file reading (.xlsx)
+xlrd>=2.0.1                # Legacy Excel file support (.xls)
+
+# Google API Integration
+google-auth>=2.22.0        # Google authentication
+google-auth-oauthlib>=1.0.0
+google-auth-httplib2>=0.1.0
+google-api-python-client>=2.95.0  # Google Drive API
+gspread>=5.10.0            # Google Sheets API wrapper
+
+# Utilities
+python-dateutil>=2.8.2     # Date parsing utilities
