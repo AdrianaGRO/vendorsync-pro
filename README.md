@@ -158,6 +158,18 @@ Done in 20.3 seconds
 
 ---
 
+## Performance
+
+End-to-end timing (Drive download → clean → merge → Sheets publish):
+
+| Vendors | Products | File Size | Processing Time |
+|---------|----------|-----------|-----------------|
+| 3       | 5,000    | 0.2 MB    | ~20 seconds     |
+
+*Processing time varies based on network speed and Google API response time.*
+
+---
+
 ## Design Decisions
 
 **Single entry point.** Everything runs from `main.py`. There are no helper scripts to run first or separately. The preflight check, pipeline, and error handling are all in one place.
