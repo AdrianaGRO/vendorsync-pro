@@ -164,9 +164,9 @@ End-to-end timing (Drive download → clean → merge → Sheets publish):
 
 | Vendors | Products | File Size | Processing Time |
 |---------|----------|-----------|-----------------|
-| 3       | 5,000    | 0.2 MB    | ~20 seconds     |
+| 3       | 5,000    | 0.33 MB   | ~20 seconds     |
 
-*Processing time varies based on network speed and Google API response time.*
+*Processing time varies based on network latency and Google Drive response speeds. Typical runs average under 30 seconds.*
 
 ---
 
