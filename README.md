@@ -145,7 +145,7 @@ For Google Cloud setup: enable the Drive API and Sheets API, create a service ac
 ## How to Run
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 On startup, the script runs a preflight check that verifies `config.json`, `google_credentials.json`, and Python version before touching any external service. If anything is missing, it exits with a clear error message.
