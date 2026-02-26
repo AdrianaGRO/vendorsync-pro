@@ -2,6 +2,8 @@
 
 Automates vendor price comparison and publishes a unified price matrix to Google Sheets.
 
+**Demo Video:** https://youtu.be/S1AgnAN7ero
+
 ---
 
 ## Business Problem
