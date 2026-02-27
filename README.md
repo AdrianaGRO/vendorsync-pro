@@ -24,7 +24,7 @@ This process has several compounding problems:
 | **Vendor Scalability**     | Limited by manual effort | Unlimited              | Handles more vendors easily |
 | **Operational Efficiency** | Manual workflow          | Automated pipeline     | Saves time and effort       |
 
-VendorSync solves this by automating the entire workflow — from file retrieval to a published, formatted comparison sheet — with a single command.
+VendorSync solves this by automating the entire workflow;from file retrieval to a published, formatted comparison sheet; with a single command.
 
 ---
 
